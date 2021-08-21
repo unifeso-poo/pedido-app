@@ -1,0 +1,93 @@
+html {
+  background-color: #D1FCFF;
+}
+
+html, body {
+  font-family: 'Varela Round';
+  font-weight: 400;
+  font-size: 10px;
+  color: #495556;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #437B7F;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0 0 .5rem;
+  text-align: center;
+}
+
+.mb-2 {
+  margin-bottom: 2.7rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.card {
+  background-color: white;
+  border-radius: .4rem;
+  box-shadow: 0 .2rem .1rem 0 rgba(0, 0, 0, 0.14), 0 .1rem .5rem 0 rgba(0, 0, 0, 0.12), 0 .3rem .1rem -.2rem rgba(0, 0, 0, 0.2);
+  max-width: 40rem;
+  margin: 5rem auto;
+  padding: 3rem 4rem;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: .5rem;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  height: 3rem;
+  border-radius: .4rem;
+  border: solid .1rem #ccc;
+  margin: 0;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  height: 3rem;
+  border-radius: .4rem;
+  border: solid .1rem #ccc;
+  margin-bottom: 1rem;
+  background-color: #6BC5CC;
+  color: white;
+}
+
+.button:hover {
+  background-color: #437B7F;
+}
+
+.linkButton {
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 0 .5rem;
+  border-right: solid .1rem #ccc;
+  color: #6BC5CC;
+}
+
+.linkButton:hover {
+  color: #437B7F;
+  text-decoration: none;
+}
+
+
+.linkButton:last-child {
+  padding-right: 0;
+  border-right: none;
+}
