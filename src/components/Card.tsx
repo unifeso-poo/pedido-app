@@ -1,4 +1,5 @@
 import React from "react";
+import './Card.scss';
 
 interface Props {
     title: string;
@@ -10,9 +11,9 @@ export const Card: React.FC<Props> = (props) => {
     return (
         <div className={`card ${props.customClass ?? ''}`}>
             <div className="card__header">
-                <h1 className="card-header__title">
+                <div className="card-title">
                     {props.title}
-                </h1>
+                </div>
             </div>
             <div className="card__content">
                 {props.children}

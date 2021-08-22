@@ -1,5 +1,5 @@
 import React from "react";
-import { isPropertySignature } from "typescript";
+import './TextInput.scss';
 
 interface Props {
     label: string;

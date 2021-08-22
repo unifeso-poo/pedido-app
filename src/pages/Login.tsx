@@ -1,4 +1,5 @@
 import React from "react";
+import "./Login.scss";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { ButtonLink } from "../components/ButtonLink";
@@ -12,8 +13,8 @@ export const Login: React.FC = () => {
                 <TextInput label="Password" type="password" />
                 <Button text="Entrar" />
                 <div className="center">
-                    <ButtonLink text="Esqueceu sua senha?" />
-                    <ButtonLink text="Dificuldades para entrar?" />
+                    <ButtonLink url="/forgot-password" text="Esqueceu sua senha?" />
+                    <ButtonLink url="/contact" text="Dificuldades para entrar?" />
                 </div>
             </Card>
         </div>

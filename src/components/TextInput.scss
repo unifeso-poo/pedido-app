@@ -1,0 +1,33 @@
+@import "../variables.scss";
+
+.form {
+    display: block;
+    clear: both;
+    margin-bottom: $margin-bottom;
+
+    &__label {
+        white-space: nowrap;
+        display: block;
+        margin-bottom: $margin-bottom;
+        padding-top: 1rem;
+    }
+
+    &__input {
+        appearance: none;
+        display: block;
+        height: 4rem;
+        width: 100%;
+        text-indent: 1rem;
+        border-radius: 0.4rem;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: none;
+        color: $primary-darken;
+        margin-bottom: $margin-bottom;
+    }
+}
+
+.form__input:focus {
+    outline: 0;
+    border-color: $primary;
+}
