@@ -7,8 +7,8 @@ interface Props {
 }
 
 export const TextInput: React.FC<Props> = ({label, type}) => (
-    <div className="formGroup">
-        <label className="label">{label}</label>
-        <input className="input" type={type} />
+    <div className="form">
+        <label className="form__label">{label}</label>
+        <input className="form__input" type={type} />
     </div>
 );

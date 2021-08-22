@@ -5,5 +5,9 @@ interface Props {
 }
 
 export const Button: React.FC<Props> = ({text}) => (
-    <button className="button">{text}</button>
+    <button
+        className="button"
+        onClick={() => console.log('qq merda')}>
+        {text}
+    </button>
 );
