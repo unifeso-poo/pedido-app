@@ -1,0 +1,31 @@
+.card {
+    background-color: white;
+    border-radius: .4rem;
+    box-shadow: 0 .2rem .1rem 0 rgba(0, 0, 0, 0.14), 0 .1rem .5rem 0 rgba(0, 0, 0, 0.12), 0 .3rem .1rem -.2rem rgba(0, 0, 0, 0.2);
+    max-width: 40rem;
+    margin: 5rem auto;
+    padding: 3rem 4rem;
+
+    &__header {
+        position: relative;
+        padding-top: 2rem;
+    }
+
+    &__header-icon {
+        position: absolute;
+        height: 6rem;
+        top: -5rem;
+        left: calc(50% - 3rem);
+        border-radius: 50%;
+        background-color: #ffffff;
+        padding: 1rem;
+        border: solid 1px;
+    }
+}
+
+.picture {
+    &__img {
+        height: 100%;
+        color: red;
+    }
+}

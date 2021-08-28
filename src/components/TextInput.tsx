@@ -1,14 +1,21 @@
 import React from "react";
-import { isPropertySignature } from "typescript";
+import "./TextInput.scss";
 
 interface Props {
     label: string;
-    type: string;
+    type?: string;
 }
 
 export const TextInput: React.FC<Props> = ({label, type}) => (
-    <div className="formGroup">
-        <label className="label">{label}</label>
-        <input className="input" type={type} />
+    <div className="form">
+        <input className="form__input" type={type} placeholder=" " />
+        <label className="form__label">{label}</label>
+    </div>
+);
+
+export const TextArea: React.FC<Props> = ({label}) => (
+    <div className="form">
+        <textarea className="form__input" placeholder=" "></textarea>
+        <label className="form__label">{label}</label>
     </div>
 );

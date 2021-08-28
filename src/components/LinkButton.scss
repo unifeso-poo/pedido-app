@@ -1,0 +1,19 @@
+@import '../variables';
+
+.linkButton {
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 .5rem;
+    border-right: solid .1rem #ccc;
+    color: $secondary-color;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary-color;
+    }
+
+    &:last-child {
+        padding-right: 0;
+        border-right: none;
+    }
+}
