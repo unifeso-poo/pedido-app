@@ -3,7 +3,7 @@ import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { LinkButton } from "../components/LinkButton";
 import { TextInput } from "../components/TextInput";
-import icon from "../cargo.svg";
+import icon from "../price-list.svg";
 import { Router } from "react-router-dom";
 
 export const Login: React.FC = () => {
