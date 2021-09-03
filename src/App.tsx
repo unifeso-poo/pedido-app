@@ -1,5 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import { Login } from './pages/Login';
 import {
@@ -15,7 +13,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/" exact>
+          <Route path="/">
             <Login />
           </Route>
           <Route path="/forgot">
