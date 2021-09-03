@@ -1,7 +1,4 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import { Login } from './pages/Login';
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,6 +6,25 @@ import {
 } from "react-router-dom";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { Contact } from "./pages/Contact";
+import { Home } from './pages/Home';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import React from 'react';
+
+
+interface PrivateRouteProps {
+  component: any;
+  path: string;
+}
+
+const PrivateRoute = ({ component, ...rest }: PrivateRouteProps) => {
+  const privatePage = withAuthenticationRequired(component);
+  return (
+      <Route
+          {...rest}
+          render={(props) => React.createElement(privatePage, props)}
+      />
+  );
+}
 
 function App() {
   return (
@@ -16,15 +32,11 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact>
-            <Login />
+            <Home />
           </Route>
-          <Route path="/forgot">
-            <ForgotPassword />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-        </Switch>        
+          <PrivateRoute component={ForgotPassword} path="/forgot" />
+          <PrivateRoute component={Contact} path="/contact" />
+        </Switch>
       </Router>
     </div>
   );
