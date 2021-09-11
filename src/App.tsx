@@ -4,16 +4,20 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { ForgotPassword } from "./pages/ForgotPassword";
-import { Contact } from "./pages/Contact";
-import { Home } from './pages/Home';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import React from 'react';
+import { Home } from './pages/Home';
+import { Pedidos } from './pages/Pedidos';
+import { Clientes } from './pages/Clientes';
+import { Produtos } from './pages/Produtos';
+import { Financeiro } from './pages/Financeiro';
+import { FormaPagamento } from './pages/FormaPagamento';
 
 
 interface PrivateRouteProps {
   component: any;
   path: string;
+  exact?: boolean;
 }
 
 const PrivateRoute = ({ component, ...rest }: PrivateRouteProps) => {
@@ -31,11 +35,12 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <PrivateRoute component={ForgotPassword} path="/forgot" />
-          <PrivateRoute component={Contact} path="/contact" />
+          <PrivateRoute component={Home} path="/" exact />
+          <PrivateRoute component={Pedidos} path="/pedidos" />
+          <PrivateRoute component={Clientes} path="/clientes" />
+          <PrivateRoute component={Produtos} path="/produtos" />
+          <PrivateRoute component={Financeiro} path="/financeiro" />
+          <PrivateRoute component={FormaPagamento} path="/formas-pagamento" />
         </Switch>
       </Router>
     </div>

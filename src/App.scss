@@ -1,8 +1,9 @@
 @import 'variables';
 
-html {
+html, body {
   background: linear-gradient(0deg, $primary-color 0%, rgba(209,252,255,1) 100%) no-repeat;
   height: 100vh;
+  background-attachment: fixed;
 }
 
 * {
