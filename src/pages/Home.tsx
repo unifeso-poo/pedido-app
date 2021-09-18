@@ -25,10 +25,9 @@ export const Home: React.FC = () => {
             <Container>
                 <Row xs={2} className="g-4">
                     {menu.map((m, i) => (
-                        <Col>
+                        <Col key={i}>
                             <Card
                                 bg={m.bg}
-                                key={i}
                                 text={m.text}
                                 onClick={(e) => history.push(m.link)}>
                                 <Card.Body>
