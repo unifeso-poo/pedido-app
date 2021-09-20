@@ -10,6 +10,7 @@ ReactDOM.render(
     <Auth0Provider
       domain="tiagor87.auth0.com"
       clientId="KHoHACh9opA53CBAmmAluPbA5jvcOzFj"
+      audience="https://pedido-api.unifeso-poo.com.br"
       cache={new LocalStorageCache()}
       redirectUri={window.location.origin}
     >
