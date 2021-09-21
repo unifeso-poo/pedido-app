@@ -10,7 +10,6 @@ interface IProduto {
     preco: number;
     quantidadeDisponivel: number;
 }
-
 export const Produto: React.FC = () => {
     const history = useHistory();
     const params = useParams<{id?:string}>();
