@@ -31,17 +31,66 @@ const data: IProduto[] = [
 class FiltroProduto {
   id: number | null;
   nome: string;
-  precoMaximo: number;
-  precoMinimo: number;
-  quantidadeMaxima: number;
-  quantidadeMinima: number;
-  constructor() {
-    this.id = null;
-    this.nome = "";
-    this.precoMaximo = Infinity;
-    this.precoMinimo = 0;
-    this.quantidadeMaxima = Infinity;
-    this.quantidadeMinima = 0;
+  private _precoMaximo: number;
+  private _precoMinimo: number;
+  private _quantidadeMaxima: number;
+  private _quantidadeMinima: number;
+  constructor(filtroProduto: FiltroProduto | null = null) {
+    this.id = filtroProduto ? filtroProduto.id : null;
+    this.nome = filtroProduto ? filtroProduto.nome : "";
+    this._precoMaximo = filtroProduto ? filtroProduto.precoMaximo : Infinity;
+    this._precoMinimo = filtroProduto ? filtroProduto.precoMinimo : 0;
+    this._quantidadeMaxima = filtroProduto ? filtroProduto.quantidadeMaxima : Infinity;
+    this._quantidadeMinima = filtroProduto ? filtroProduto.quantidadeMinima : 0;
+  }
+
+  get precoMaximo(): number {
+    return this._precoMaximo;
+  }
+
+  set precoMaximo(precoMaximo: number) {
+    if (isNaN(precoMaximo) || precoMaximo < 0) {
+      this._precoMaximo = Infinity;
+      return;
+    }
+    this._precoMaximo = precoMaximo;
+  }
+
+  get precoMinimo(): number {
+    return this._precoMinimo;
+  }
+
+  set precoMinimo(precoMinimo: number) {
+    if (isNaN(precoMinimo) || precoMinimo < 0) {
+      console.log("precoMinimo invalido");
+      this._precoMinimo = 0;
+      return;
+    }
+    this._precoMinimo = precoMinimo;
+  }
+
+  get quantidadeMaxima() {
+    return this._quantidadeMaxima;
+  }
+
+  set quantidadeMaxima(quantidadeMaxima: number) {
+    if (isNaN(quantidadeMaxima) || quantidadeMaxima < 0) {
+      this._quantidadeMaxima = Infinity;
+      return;
+    }
+    this._quantidadeMaxima = quantidadeMaxima;
+  }
+
+  get quantidadeMinima() {
+    return this._quantidadeMinima;
+  }
+
+  set quantidadeMinima(quantidadeMinima: number) {
+    if (isNaN(quantidadeMinima) || quantidadeMinima < 0) {
+      this._quantidadeMinima = 0;
+      return;
+    }
+    this._quantidadeMinima = quantidadeMinima;
   }
 
   comparaProduto(produto: IProduto) {
@@ -49,18 +98,10 @@ class FiltroProduto {
     let nome =
       !(this.nome && produto.nome && this.nome.length > 0) ||
       (this.nome && produto.nome && produto.nome.toLowerCase().includes(this.nome.toLowerCase()));
-    let filtrarPreco = this.precoMinimo && produto.preco && this.precoMaximo;
-    let preco = !filtrarPreco || (produto.preco <= this.precoMaximo && produto.preco >= this.precoMinimo);
-    let filtrarQuantidade = this.quantidadeMinima && produto.quantidadeDisponivel && (this.quantidadeMaxima || produto.quantidadeDisponivel);
-    let quantidade =
-      !filtrarQuantidade ||
-      (this.quantidadeMinima &&
-        produto.quantidadeDisponivel &&
-        produto.quantidadeDisponivel <= this.quantidadeMaxima &&
-        produto.quantidadeDisponivel >= this.quantidadeMinima);
-    console.log("produto.preco " + produto.preco);
-    console.log(" !filtrarPreco " + !filtrarPreco);
-    return id && nome && preco;
+    console.log("this.precoMinimo " + this.precoMinimo);
+    let preco = produto.preco <= this.precoMaximo && produto.preco >= this.precoMinimo;
+    let quantidade = produto.quantidadeDisponivel <= this.quantidadeMaxima && produto.quantidadeDisponivel >= this.quantidadeMinima;
+    return id && nome && preco && quantidade;
     // id && nome && preco && quantidade
   }
 }
@@ -70,7 +111,7 @@ export const Produtos: React.FC = () => {
   const { isLoading, error, result } = useQuery<IProduto[]>("/produtos");
   const [filtroProduto, setFiltroProduto] = useState<FiltroProduto>(new FiltroProduto());
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const filtroProdutoTemporario = new FiltroProduto();
+  const filtroProdutoTemporario = new FiltroProduto(filtroProduto);
 
   const open = () => setIsOpen(!isOpen);
   return (
@@ -87,8 +128,8 @@ export const Produtos: React.FC = () => {
               className="mr-2"
               aria-label="Search"
               aria-expanded={isOpen}
-              onChange={(e) => {
-                filtroProdutoTemporario.nome = e.target.value;
+              onInput={(e) => {
+                filtroProdutoTemporario.nome = (e.target as HTMLInputElement).value;
               }}
             />
             <Button variant="outline-success" onClick={() => setFiltroProduto(filtroProdutoTemporario)}>
@@ -98,9 +139,50 @@ export const Produtos: React.FC = () => {
               Filtros
             </Button>
           </Form>
+          <Container className="d-block align-itens-left">
+            <Collapse in={isOpen}>
+              <Form>
+                <FormControl
+                  type="search"
+                  placeholder="Id"
+                  className="mr-2 m-1 w-10"
+                  aria-label="Search"
+                  onInput={(e) => {
+                    filtroProdutoTemporario.id = parseInt((e.target as HTMLInputElement).value);
+                  }}
+                />
+                <FormControl
+                  type="search"
+                  placeholder="Nome do Produto"
+                  className="mr-2 m-1 w-10"
+                  aria-label="Search"
+                  onInput={(e) => {
+                    filtroProdutoTemporario.nome = (e.target as HTMLInputElement).value;
+                  }}
+                />
+                <FormControl
+                  type="search"
+                  placeholder="Preço Mímino"
+                  className="mr-2 m-1 w-10"
+                  aria-label="Search"
+                  onInput={(e) => {
+                    filtroProdutoTemporario.precoMinimo = parseInt((e.target as HTMLInputElement).value);
+                  }}
+                />
+                <FormControl
+                  type="search"
+                  placeholder="Preço Máximo"
+                  className="mr-2 m-1 w-10"
+                  aria-label="Search"
+                  onInput={(e) => {
+                    filtroProdutoTemporario.precoMaximo = parseInt((e.target as HTMLInputElement).value);
+                  }}
+                />
+              </Form>
+            </Collapse>
+          </Container>
         </Container>
       </Navbar>
-
       <Container className={" m-auto"}>
         <ListGroup variant="flush" className="dark">
           <ListGroup.Item className="d-flex justify-content-between m-1 rounded-3 bg-dark text-light">
