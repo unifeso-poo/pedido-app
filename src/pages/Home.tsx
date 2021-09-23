@@ -29,6 +29,7 @@ export const Home: React.FC = () => {
                             <Card
                                 bg={m.bg}
                                 text={m.text}
+                                role="button"
                                 onClick={(e) => history.push(m.link)}>
                                 <Card.Body>
                                     <Card.Title>{m.title}</Card.Title>

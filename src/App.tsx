@@ -9,10 +9,9 @@ import React from 'react';
 import { Home } from './pages/Home';
 import { Pedidos } from './pages/Pedidos';
 import { Clientes } from './pages/Clientes';
-import { Produtos } from './pages/Produtos';
+import { Product } from './pages/Produtos';
 import { Financeiro } from './pages/Financeiro';
 import { FormaPagamento } from './pages/FormaPagamento';
-import { Produto } from './pages/Produto';
 
 
 interface PrivateRouteProps {
@@ -39,8 +38,7 @@ function App() {
           <PrivateRoute component={Home} path="/" exact />
           <PrivateRoute component={Pedidos} path="/pedidos" />
           <PrivateRoute component={Clientes} path="/clientes" />
-          <PrivateRoute component={Produtos} path="/produtos" exact />
-          <PrivateRoute component={Produto} path="/produtos/:id" />
+          <PrivateRoute component={Product.List} path="/produtos" exact />
           <PrivateRoute component={Financeiro} path="/financeiro" />
           <PrivateRoute component={FormaPagamento} path="/formas-pagamento" />
         </Switch>

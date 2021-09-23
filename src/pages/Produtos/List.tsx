@@ -1,20 +1,19 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Container, Navbar } from "react-bootstrap";
-import Logo from "../logo.svg";
-import { useHistory, useParams } from "react-router-dom";
-import { useQuery } from "../hooks/useQuery";
 
-interface IProduto {
-    id: number;
-    nome: string;
-    preco: number;
-    quantidadeDisponivel: number;
-}
+import { useQuery } from "../../hooks/useQuery";
+import { Product, ProductApiResponse } from "./types";
+import { ProductCard } from "./ProductCard";
+import { productsMock } from "./mocks";
 
-export const Produto: React.FC = () => {
+import Logo from "../../logo.svg";
+import './styles.scss'
+export const List: React.FC = () => {
     const history = useHistory();
-    const params = useParams<{id?:string}>();
-    const { isLoading, error, result } = useQuery<IProduto>(`/produtos/${params.id}`);
+    const { result } = useQuery<ProductApiResponse>('produtos');
+
+    const products: Product[] = result?.data ?? productsMock
 
     return (
         <div>
@@ -31,8 +30,9 @@ export const Produto: React.FC = () => {
                     </Navbar.Brand>
                 </Container>
             </Navbar>
-            {error && <div className="alert alert-danger">{error.message}</div>}
-            <pre>{JSON.stringify(result)}</pre>
+            <div className="products-container">
+                {products.map((product) => <ProductCard key={product.id} product={product} />)}
+            </div>
         </div>
     );
 }
