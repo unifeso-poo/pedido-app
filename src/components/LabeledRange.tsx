@@ -1,11 +1,23 @@
 import React, { useState } from "react";
-import { FormControl } from "react-bootstrap";
+import { FormControl, FormGroup, Form, FormFloating } from "react-bootstrap";
 
-interface Props {}
+interface Props {
+  label: string
+  inputId?: string
+  id?: string
+}
 
-const LabeledRange: React.FC<Props> = () => {
+const LabeledRange: React.FC<Props> = (props: Props) => {
   const [value, setValue] = useState(0);
-  return <FormControl type="range" onChange={(e) => setValue(parseInt(e.target.value))} />;
+  return (
+      <FormGroup id={props.id} className="m-1">
+        <FormFloating>
+          <FormControl id={props.inputId} value={value} type="number" onChange={(e) => setValue(parseInt(e.target.value))}/>
+          <Form.Label>{props.label}</Form.Label>
+        </FormFloating>
+        <Form.Range value={value} onChange={(e) => setValue(parseInt(e.target.value))} max={(value)+2000}/>
+      </FormGroup>
+    );
 };
 
 export default LabeledRange;

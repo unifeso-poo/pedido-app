@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Container, Form, Navbar, FormControl, Button, Collapse, ListGroup, ButtonGroup, Row, Col } from "react-bootstrap";
+import { Container, Form, Navbar, FormControl, Button, Collapse, ListGroup, ButtonGroup, Row, Col, FormGroup } from "react-bootstrap";
 import Logo from "../logo.svg";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "../hooks/useQuery";
 import IProduto from "../model/IProduto";
 import FiltroProduto from "../utils/FiltroProduto";
+import LabeledRange from "../components/LabeledRange";
 
 // const data: IProduto[] = [
 //   {
@@ -38,7 +39,7 @@ export const Produtos: React.FC = () => {
 
   const open = () => setIsOpen(!isOpen);
   return (
-    <div>
+    <div className="overflow-hidden">
       <Navbar bg="dark">
         <Container className="justify-content-center flex-column">
           <Navbar.Brand onClick={() => history.goBack()}>
@@ -72,15 +73,9 @@ export const Produtos: React.FC = () => {
                         filtroProdutoTemporario.id = parseInt((e.target as HTMLInputElement).value);
                       }}
                     />
-                    <FormControl
-                      type="search"
-                      placeholder="Quantidade mínima"
-                      className=" m-1 "
-                      aria-label="Search"
-                      onInput={(e) => {
-                        filtroProdutoTemporario.quantidadeMinima = parseInt((e.target as HTMLInputElement).value);
-                      }}
-                    />
+                   <LabeledRange label="Quantidade mínima"/>
+                   <FormGroup>
+
                     <FormControl
                       type="search"
                       placeholder="Quantidade máxima"
@@ -89,7 +84,8 @@ export const Produtos: React.FC = () => {
                       onInput={(e) => {
                         filtroProdutoTemporario.quantidadeMaxima = parseInt((e.target as HTMLInputElement).value);
                       }}
-                    />
+                      />
+                      </FormGroup>
                     <FormControl
                       type="search"
                       placeholder="Preço Mímino"
