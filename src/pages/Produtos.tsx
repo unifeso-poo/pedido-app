@@ -7,28 +7,28 @@ import IProduto from "../model/IProduto";
 import FiltroProduto from "../utils/FiltroProduto";
 import LabeledRange from "../components/LabeledRange";
 
-// const data: IProduto[] = [
-//   {
-//     id: 1,
-//     nome: "Playstation 5",
-//     quantidadeDisponivel: 5,
-//     preco: 439900,
-//   },
+const data: IProduto[] = [
+  {
+    id: 1,
+    nome: "Playstation 5",
+    quantidadeDisponivel: 5,
+    preco: 439900,
+  },
 
-//   {
-//     id: 2,
-//     nome: "Xbox Series S",
-//     quantidadeDisponivel: 5,
-//     preco: 279900,
-//   },
+  {
+    id: 2,
+    nome: "Xbox Series S",
+    quantidadeDisponivel: 5,
+    preco: 279900,
+  },
 
-//   {
-//     id: 3,
-//     nome: "Xbox Series X",
-//     quantidadeDisponivel: 5,
-//     preco: 439900,
-//   },
-// ];
+  {
+    id: 3,
+    nome: "Xbox Series X",
+    quantidadeDisponivel: 5,
+    preco: 439900,
+  },
+];
 
 export const Produtos: React.FC = () => {
   const history = useHistory();
@@ -50,7 +50,7 @@ export const Produtos: React.FC = () => {
       <Row className=" ">
         <Col className="d-flex justify-content-center flex-column col-4 bg-dark  w-100">
           <Container className="d-flex flex-column justify-content-end">
-            <Form className="d-flex m-1">
+            <Form className="sm-d-flex sm-block md-m-1">
               <Container>
                 <FormControl
                   type="search"
@@ -62,8 +62,8 @@ export const Produtos: React.FC = () => {
                     filtroProdutoTemporario.nome = (e.target as HTMLInputElement).value;
                   }}
                 />
-                <Collapse in={isOpen}>
-                  <Form className="">
+                <Collapse in={isOpen}  className='relative'>
+                  <Form className="absolute">
                     <FormControl
                       type="search"
                       placeholder="Id"
@@ -73,41 +73,14 @@ export const Produtos: React.FC = () => {
                         filtroProdutoTemporario.id = parseInt((e.target as HTMLInputElement).value);
                       }}
                     />
-                   <LabeledRange label="Quantidade mínima"/>
-                   <FormGroup>
-
-                    <FormControl
-                      type="search"
-                      placeholder="Quantidade máxima"
-                      className=" m-1"
-                      aria-label="Search"
-                      onInput={(e) => {
-                        filtroProdutoTemporario.quantidadeMaxima = parseInt((e.target as HTMLInputElement).value);
-                      }}
-                      />
-                      </FormGroup>
-                    <FormControl
-                      type="search"
-                      placeholder="Preço Mímino"
-                      className=" m-1 "
-                      aria-label="Search"
-                      onInput={(e) => {
-                        filtroProdutoTemporario.precoMinimo = parseInt((e.target as HTMLInputElement).value);
-                      }}
-                    />
-                    <FormControl
-                      type="search"
-                      placeholder="Preço Máximo"
-                      className=" m-1"
-                      aria-label="Search"
-                      onInput={(e) => {
-                        filtroProdutoTemporario.precoMaximo = parseInt((e.target as HTMLInputElement).value);
-                      }}
-                    />
+                   <LabeledRange label="Quantidade mínima" onChange={(v) => filtroProdutoTemporario.quantidadeMinima = v}/>
+                   <LabeledRange label="Quantidade máxima" onChange={(v) => filtroProdutoTemporario.quantidadeMaxima = v}/>
+                   <LabeledRange label="Preço Mímino" onChange={(v) => filtroProdutoTemporario.precoMinimo = v}/>
+                   <LabeledRange label="Preço Máximo" onChange={(v) => filtroProdutoTemporario.precoMaximo = v}/>
                   </Form>
                 </Collapse>
               </Container>
-              <Container className="col-4">
+              <Container className=" d-flex justify-content-center mt-2 mb-4">
                 <ButtonGroup className="col-5">
                   <Button variant="info" className="text-light text-bold w-100 " onClick={() => setFiltroProduto(filtroProdutoTemporario)}>
                     Pesquisar
@@ -137,7 +110,7 @@ export const Produtos: React.FC = () => {
               <h5>{`Quantidade`}</h5>
               <div></div>
             </ListGroup.Item>
-            {result
+            {data
               ?.filter((produto) => filtroProduto.comparaProduto(produto))
               .map((produto) => {
                 console.log("passou no filtro");
