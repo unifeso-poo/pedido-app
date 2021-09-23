@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useQuery } from "../hooks/useQuery";
-import json_pagamentos from '../data/meios_pagamento.json';
+import { TransferenciaModal } from '../components/TransferenciaModal';
 
 interface PagamentoDatum {
   id: number,
@@ -59,14 +59,18 @@ export const FormaPagamento: React.FC = () => {
     </Card>
   )
 
+  const [transferenciaModalOpen, setTransferenciaModalOpen] = useState(false);
+
   const onClickEvents: any = {
     'pix': () => alert('pix'),
-    'transferencia': () => alert('transferencia'),
+    'transferencia': () => setTransferenciaModalOpen(true),
     'cartao_3x': () => alert('cartão')
   }
 
   return (
     <>
+      <TransferenciaModal isOpen={transferenciaModalOpen} setIsOpen={setTransferenciaModalOpen} />
+
       <div className="mt-5 d-flex align-items-center justify-content-center">
         <h1>Selecione a forma de pagamento</h1>
       </div>
