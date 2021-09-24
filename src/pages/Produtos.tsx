@@ -6,6 +6,8 @@ import { useQuery } from "../hooks/useQuery";
 import IProduto from "../model/IProduto";
 import FiltroProduto from "../utils/FiltroProduto";
 import LabeledRange from "../components/LabeledRange";
+import "../styles/produtos.scss"
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const data: IProduto[] = [
   {
@@ -36,8 +38,8 @@ export const Produtos: React.FC = () => {
   const [filtroProduto, setFiltroProduto] = useState<FiltroProduto>(new FiltroProduto());
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const filtroProdutoTemporario = new FiltroProduto(filtroProduto);
-
-  const open = () => setIsOpen(!isOpen);
+  console.log("build isOpen? " + isOpen );
+  console.log("icon: " + ("icon " + isOpen? "bi-chevron-up" : "bi-chevron-down"))
   return (
     <div className="overflow-hidden">
       <Navbar bg="dark">
@@ -49,8 +51,8 @@ export const Produtos: React.FC = () => {
       </Navbar>
       <Row className=" ">
         <Col className="d-flex justify-content-center flex-column col-4 bg-dark  w-100">
-          <Container className="d-flex flex-column justify-content-end">
-            <Form className="sm-d-flex sm-block md-m-1">
+          <Container className="d-flex flex-column justify-content-center align-items-center">
+            <Form className="sm-d-flex sm-block md-m-1 form-filtro">
               <Container>
                 <FormControl
                   type="search"
@@ -67,8 +69,8 @@ export const Produtos: React.FC = () => {
                     <FormControl
                       type="search"
                       placeholder="Id"
-                      className=" m-1 "
-                      aria-label="Produto"
+                      className=" m-1 mt-2"
+                      aria-label="Id"
                       onInput={(e) => {
                         filtroProdutoTemporario.id = parseInt((e.target as HTMLInputElement).value);
                       }}
@@ -80,22 +82,21 @@ export const Produtos: React.FC = () => {
                   </Form>
                 </Collapse>
               </Container>
-              <Container className=" d-flex justify-content-center mt-2 mb-4">
-                <ButtonGroup className="col-5">
-                  <Button variant="info" className="text-light text-bold w-100 " onClick={() => setFiltroProduto(filtroProdutoTemporario)}>
-                    Pesquisar
+                <div className={`col-5 form-filtro-buttons d-${isOpen? "block" : "none"}`}>
+                  <Button variant="info" className="text-light text-bold btn-filtro" onClick={() => setFiltroProduto(filtroProdutoTemporario)}>
+                  <i className="bi-search"/> Pesquisar
                   </Button>
                   <Button
                     variant="outline-info"
-                    className=""
+                    className="form-filtro-toggler"
                     onClick={() => setIsOpen(!isOpen)}
                     aria-controls="example-collapse-text"
                     aria-expanded={isOpen}
+                    title="Mais filtros"
                   >
-                    Filtrar
+                    <i className={`"icon ${isOpen? "bi-chevron-up" : "bi-chevron-down"}`} title="Mais Filtros"/>
                   </Button>
-                </ButtonGroup>
-              </Container>
+                </div>
             </Form>
           </Container>
           <div className="h-100"></div>
