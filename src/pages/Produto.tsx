@@ -32,7 +32,7 @@ export const Produto: React.FC = () => {
                 </Container>
             </Navbar>
             {error && <div className="alert alert-danger">{error.message}</div>}
-            <pre>{JSON.stringify(result)}</pre>
+            <pre>Produto: {JSON.stringify(result)}</pre>
         </div>
     );
 }
