@@ -6,6 +6,8 @@ import { useQuery } from "../hooks/useQuery";
 import IProduto from "../model/IProduto";
 import FiltroProduto from "../utils/FiltroProduto";
 import LabeledRange from "../components/LabeledRange";
+import "../styles/produtos.scss";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const data: IProduto[] = [
   {
@@ -36,8 +38,8 @@ export const Produtos: React.FC = () => {
   const [filtroProduto, setFiltroProduto] = useState<FiltroProduto>(new FiltroProduto());
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const filtroProdutoTemporario = new FiltroProduto(filtroProduto);
-
-  const open = () => setIsOpen(!isOpen);
+  console.log("build isOpen? " + isOpen);
+  console.log("icon: " + ("icon " + isOpen ? "bi-chevron-up" : "bi-chevron-down"));
   return (
     <div className="overflow-hidden">
       <Navbar bg="dark">
