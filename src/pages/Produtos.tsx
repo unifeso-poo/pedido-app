@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Form, Navbar, FormControl, Button, Collapse, ListGroup, ButtonGroup, Row, Col, FormGroup } from "react-bootstrap";
+import { Container, Form, Navbar, FormControl, Button, Collapse, ListGroup, ButtonGroup, Row, Col, FormGroup, Table } from "react-bootstrap";
 import Logo from "../logo.svg";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "../hooks/useQuery";
@@ -47,95 +47,105 @@ export const Produtos: React.FC = () => {
           </Navbar.Brand>
         </Container>
       </Navbar>
-      <Row className=" ">
-        <Col className="d-flex justify-content-center flex-column col-4 bg-dark  w-100">
-          <Container className="d-flex flex-column justify-content-end">
-            <Form className="sm-d-flex sm-block md-m-1">
-              <Container>
+      <div className="d-flex md-flex-column justify-content-end bg-dark w-200 ">
+        <Form className="sm-d-flex md-block md-m-1 col-5 m-auto">
+          <Container>
+            <FormControl
+              type="search"
+              placeholder="Produto"
+              className="m-1"
+              aria-label="Search"
+              aria-expanded={isOpen}
+              onInput={(e) => {
+                filtroProdutoTemporario.nome = (e.target as HTMLInputElement).value;
+              }}
+            />
+            <Collapse in={isOpen} className="relative">
+              <Form className="absolute">
                 <FormControl
                   type="search"
-                  placeholder="Produto"
-                  className="m-1"
-                  aria-label="Search"
-                  aria-expanded={isOpen}
+                  placeholder="Id"
+                  className=" m-1 "
+                  aria-label="Produto"
                   onInput={(e) => {
-                    filtroProdutoTemporario.nome = (e.target as HTMLInputElement).value;
+                    filtroProdutoTemporario.id = parseInt((e.target as HTMLInputElement).value);
                   }}
                 />
-                <Collapse in={isOpen}  className='relative'>
-                  <Form className="absolute">
-                    <FormControl
-                      type="search"
-                      placeholder="Id"
-                      className=" m-1 "
-                      aria-label="Produto"
-                      onInput={(e) => {
-                        filtroProdutoTemporario.id = parseInt((e.target as HTMLInputElement).value);
-                      }}
-                    />
-                   <LabeledRange label="Quantidade mínima" onChange={(v) => filtroProdutoTemporario.quantidadeMinima = v}/>
-                   <LabeledRange label="Quantidade máxima" onChange={(v) => filtroProdutoTemporario.quantidadeMaxima = v}/>
-                   <LabeledRange label="Preço Mímino" onChange={(v) => filtroProdutoTemporario.precoMinimo = v}/>
-                   <LabeledRange label="Preço Máximo" onChange={(v) => filtroProdutoTemporario.precoMaximo = v}/>
-                  </Form>
-                </Collapse>
-              </Container>
-              <Container className=" d-flex justify-content-center mt-2 mb-4">
-                <ButtonGroup className="col-5">
-                  <Button variant="info" className="text-light text-bold w-100 " onClick={() => setFiltroProduto(filtroProdutoTemporario)}>
-                    Pesquisar
-                  </Button>
-                  <Button
-                    variant="outline-info"
-                    className=""
-                    onClick={() => setIsOpen(!isOpen)}
-                    aria-controls="example-collapse-text"
-                    aria-expanded={isOpen}
-                  >
-                    Filtrar
-                  </Button>
-                </ButtonGroup>
-              </Container>
-            </Form>
+                <LabeledRange label="Quantidade mínima" onChange={(v) => (filtroProdutoTemporario.quantidadeMinima = v)} />
+                <LabeledRange label="Quantidade máxima" onChange={(v) => (filtroProdutoTemporario.quantidadeMaxima = v)} />
+                <LabeledRange label="Preço Mímino" onChange={(v) => (filtroProdutoTemporario.precoMinimo = v)} />
+                <LabeledRange label="Preço Máximo" onChange={(v) => (filtroProdutoTemporario.precoMaximo = v)} />
+              </Form>
+            </Collapse>
           </Container>
-          <div className="h-100"></div>
-        </Col>
-        <Col className="d-flex flex-column justify-content-center col-8 w-66 m-auto">
-          <h3 className="m-auto mt-4">Lista de Produtos</h3>
-          <ListGroup variant="flush" className="dark w-100 p-3">
-            <ListGroup.Item className="d-flex justify-content-between m-1 rounded-3 bg-dark text-light">
-              <h5>{`ID`}</h5>
-              <h5>{`Produto`}</h5>
-              <h5>{`Preço`}</h5>
-              <h5>{`Quantidade`}</h5>
-              <div></div>
-            </ListGroup.Item>
+          <Container className=" d-flex justify-content-center mt-2 mb-4">
+            <ButtonGroup className="col-5">
+              <Button variant="info" className="text-light text-bold w-100 " onClick={() => setFiltroProduto(filtroProdutoTemporario)}>
+                Pesquisar
+              </Button>
+              <Button
+                variant="outline-info"
+                className=""
+                onClick={() => setIsOpen(!isOpen)}
+                aria-controls="example-collapse-text"
+                aria-expanded={isOpen}
+              >
+                Filtros
+              </Button>
+            </ButtonGroup>
+          </Container>
+        </Form>
+      </div>
+      <div className="w-100">
+        <h3 className="m-auto mt-4 mb-3 text-center">Lista de Produtos</h3>
+        <Table responsive="sm bg-light col-8 m-auto rounded">
+          <thead className="bg-dark text-light rounded">
+            <tr>
+              <th className="text-center">{`ID`}</th>
+              <th className="text-center">{`Produto`}</th>
+              <th className="text-center">{`Preço`}</th>
+              <th className="text-center">{`Quantidade`}</th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
             {data
               ?.filter((produto) => filtroProduto.comparaProduto(produto))
               .map((produto) => {
-                console.log("passou no filtro");
-                console.log(produto);
                 return (
-                  <ListGroup.Item className="d-flex justify-content-between text-center m-1 rounded-3">
-                    <p>{`${produto?.id}`}</p>
-                    <p>{`${produto?.nome}`}</p>
-                    <p>{`R$ ${produto?.preco / 100}`}</p>
-                    <p>{`${produto?.quantidadeDisponivel}`}</p>
-                    <ButtonGroup aria-label="Basic example">
-                      <Button className="px-3 mx-1 text-light" variant="info" size="sm">
-                        ...
-                      </Button>
-                      <Button className="px-3" variant="outline-info" size="sm">
-                        X
-                      </Button>
-                    </ButtonGroup>
-                  </ListGroup.Item>
+                  <>
+                    <tr>
+                      <td className="text-center">{`${produto?.id}`}</td>
+                      <td className="text-center">{`${produto?.nome}`}</td>
+                      <td className="text-center">
+                        {Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(produto?.preco / 100)}
+                      </td>
+                      <td className="text-center">{`${produto?.quantidadeDisponivel}`}</td>
+                      <td className="text-center">
+                        <Button className="text-light" variant="info" size="sm">
+                          ...
+                        </Button>
+                      </td>
+                    </tr>
+                    <Collapse in={isOpen}>
+                      <tr>
+                        <td>{`${produto?.id}`}</td>
+                        <td>{`${produto?.nome}`}</td>
+                        <td>{Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(produto?.preco / 100)}</td>
+                        <td>{`${produto?.quantidadeDisponivel}`}</td>
+                        <td>
+                          <Button className="px-3 mx-1 text-light" variant="info" size="sm">
+                            ...
+                          </Button>
+                        </td>
+                      </tr>
+                    </Collapse>
+                  </>
                 );
               })}
-          </ListGroup>
-        </Col>
-      </Row>
-      <Container className={" m-auto"}></Container>
+          </tbody>
+        </Table>
+      </div>
     </div>
   );
 };
