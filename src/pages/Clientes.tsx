@@ -1,10 +1,5 @@
 import React from "react";
 
 export const Clientes: React.FC = () => {
-
-    return (
-        <div>
-            Clientes
-        </div>
-    );
-}
+  return <div>Clientes</div>;
+};

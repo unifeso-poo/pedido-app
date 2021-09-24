@@ -1,0 +1,28 @@
+.form-filtro-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.from-filtro {
+  width: 70%;
+}
+
+.form-filtro-buttons .btn-filtro {
+  width: 8rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-filtro-toggler {
+  width: 2rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 640px) {
+}

@@ -10,6 +10,7 @@ import { Home } from './pages/Home';
 import { Pedidos } from './pages/Pedidos';
 import { Clientes } from './pages/Clientes';
 import { Produtos } from './pages/Produtos';
+
 import { Financeiro } from './pages/Financeiro';
 import { FormaPagamento } from './pages/FormaPagamento';
 import { Produto } from './pages/Produto';
@@ -17,8 +18,8 @@ import { Produto } from './pages/Produto';
 
 interface PrivateRouteProps {
   component: any;
-  path: string;
-  exact?: boolean;
+  path: string; 
+  exact?: boolean; 
 }
 
 const PrivateRoute = ({ component, ...rest }: PrivateRouteProps) => {
