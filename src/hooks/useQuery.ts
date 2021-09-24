@@ -12,7 +12,7 @@ export const useQuery = <TResult>(query: string) => {
             try {
                 setIsLoading(true);
                 const accessToken = await getAccessTokenSilently();
-                const response = await fetch(`https://localhost:5001${query}`, {
+                const response = await fetch(`https://www.mockachino.com/spaces/04f0c2f6-3396-4a${query}`, {
                     headers: {
                         "Authorization": `Bearer ${accessToken}`,
                         "Content-Type": "application/jsonp"
