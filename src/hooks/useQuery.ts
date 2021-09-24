@@ -15,11 +15,11 @@ export const useQuery = <TResult>(query: string) => {
                 const response = await fetch(`https://localhost:5001${query}`, {
                     headers: {
                         "Authorization": `Bearer ${accessToken}`,
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/jsonp"
                     }
                 });
                 const result = await response.json();
-                setResult(result);
+                setResult(result.data);
             }
             catch (error) {
                 setError(error);            
