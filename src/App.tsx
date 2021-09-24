@@ -13,6 +13,7 @@ import { Produtos } from './pages/Produtos';
 import { Financeiro } from './pages/Financeiro';
 import { FormaPagamento } from './pages/FormaPagamento';
 import { Produto } from './pages/Produto';
+import { Pedido } from './pages/Pedido';
 
 
 interface PrivateRouteProps {
@@ -37,7 +38,8 @@ function App() {
       <Router>
         <Switch>
           <PrivateRoute component={Home} path="/" exact />
-          <PrivateRoute component={Pedidos} path="/pedidos" />
+          <PrivateRoute component={Pedidos} path="/pedidos" exact/>
+          <PrivateRoute component={Pedido} path="/pedidos/:id" />
           <PrivateRoute component={Clientes} path="/clientes" />
           <PrivateRoute component={Produtos} path="/produtos" exact />
           <PrivateRoute component={Produto} path="/produtos/:id" />
