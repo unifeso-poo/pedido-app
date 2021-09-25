@@ -12,7 +12,15 @@
     "@types/react": "^17.0.19",
     "@types/react-bootstrap": "^0.32.26",
     "@types/react-dom": "^17.0.9",
+    "base64-stream": "^1.0.0",
     "bootstrap": "^5.1.0",
+    "calcula-formula-ar": "^1.0.6",
+    "dayjs": "^1.10.7",
+    "gerar-boletos": "^1.4.5",
+    "node-gerador-boletos": "^2.1.2",
+    "pad": "^3.2.0",
+    "pdfkit": "^0.12.3",
+    "qrcode.react": "^1.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
     "react-dom": "^17.0.2",
@@ -48,6 +56,7 @@
     ]
   },
   "devDependencies": {
+    "@types/qrcode.react": "^1.0.2",
     "@types/react-router-dom": "^5.1.8"
   }
 }
