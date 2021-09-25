@@ -2,8 +2,10 @@ import './App.scss';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useHistory
 } from "react-router-dom";
+import Logo from "./logo.svg";
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import React from 'react';
 import { Home } from './pages/Home';
@@ -13,6 +15,7 @@ import { Produtos } from './pages/Produtos';
 import { Financeiro } from './pages/Financeiro';
 import { FormaPagamento } from './pages/FormaPagamento';
 import { Produto } from './pages/Produto';
+import { Container, Navbar } from 'react-bootstrap';
 
 
 interface PrivateRouteProps {
@@ -32,8 +35,23 @@ const PrivateRoute = ({ component, ...rest }: PrivateRouteProps) => {
 }
 
 function App() {
+  const history = useHistory();
+
   return (
     <div className="App">
+      <Navbar bg="dark">
+          <Container className="justify-content-center">
+              <Navbar.Brand onClick={() => history.goBack()}>
+                  <img
+                      src={Logo}
+                      width="30"
+                      height="30"
+                      className="d-inline-block align-top"
+                      alt="Pedidos logo"
+                  />
+              </Navbar.Brand>
+          </Container>
+      </Navbar>
       <Router>
         <Switch>
           <PrivateRoute component={Home} path="/" exact />
