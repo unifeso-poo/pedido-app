@@ -21,7 +21,7 @@ export const useMutation = <TBody, TResult>(path: string) => {
                 body: JSON.stringify(body)
             };
 
-            const response = await fetch(`https://localhost:5001${path}`, requestOptions);
+            const response = await fetch(`https://localhost:5001/v1${path}`, requestOptions);
             const result = await response.json();
             setResult(result.data);
         }

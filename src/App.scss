@@ -1,11 +1,29 @@
 @import 'variables';
 
-html, body {
-  background: linear-gradient(0deg, $primary-color 0%, rgba(209,252,255,1) 100%) no-repeat;
-  height: 100vh;
-  background-attachment: fixed;
-}
-
 * {
   box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: $white-color;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  &__header {
+    flex: 0;
+  }
+
+  &__main {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }

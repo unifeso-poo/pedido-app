@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Navbar, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 import { Link, useHistory } from "react-router-dom";
 import { useQuery } from "../hooks/useQuery";

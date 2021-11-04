@@ -7,7 +7,6 @@ export const useQuery = <TResult>(path: string) => {
     const [isLoading, setIsLoading] = useState(true);
     const { getAccessTokenSilently } = useAuth0();
 
-
     useEffect(() => {
         const execute = async () => {
             try {
@@ -22,7 +21,7 @@ export const useQuery = <TResult>(path: string) => {
                     })
                 };
 
-                const response = await fetch(`https://localhost:5001${path}`, requestOptions);
+                const response = await fetch(`https://localhost:5001/v1${path}`, requestOptions);
                 const result = await response.json();
                 setResult(result.data);
             }
