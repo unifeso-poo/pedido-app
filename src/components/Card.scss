@@ -2,23 +2,70 @@
 
 .card {
     background-color: $white-color;
+    flex: 1;
+    min-height: 100px;
     padding: 1rem;
     margin: 0 .5rem 1rem;
-    flex: 0 1 calc(50% - 1rem);
     border-radius: .5rem;
     color: $primary-color;
     box-shadow: 0px 0px .5rem rgba(24, 130, 164, 0.25), .2rem .2rem 0px #1A82A4;
-
+    flex: 0 1 calc(50% - 10px);
+    
     &__title {
         font-size: 1rem;
         font-weight: bold;
         margin: 0;
+        text-align: left;
     }
-
+    
     &--full {
         flex: 0 1 100%;
     }
 }
+.tabbar {
+    width: 100%;
+    max-height: 80px;
+    color: $primary-color;
+    background-color: $white-color;
+    flex: 1;
+    display: flex;
+    margin-top: 15px;
+    
+    &__button {
+        background-color: $white-color;
+        font-size: 25px;
+        line-height: 0;
+        color: $primary-color;
+        cursor: pointer;
+        flex: 1;
+        border: none;
+    }
 
+    &__title {
+        background-color: $white-color;
+        //margin:25px;
+        margin: 0 .5rem 1rem;
+        font-size: 15px;
+        line-height: 0;
+        color: $primary-color;
+        cursor: pointer;
+        background-color: $white-color;
+        //flex: 1;
+        flex: 0 1 calc(50% - 10px);
+
+        min-height: 100px;
+        padding: 1rem;
+        
+        //border-radius: .5rem;
+        //color: $primary-color;
+        
+        &--full {
+            flex: 0 1 100%;
+        }
+        
+
+
+    }
+}
 
 
