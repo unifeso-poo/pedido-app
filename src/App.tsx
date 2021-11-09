@@ -10,7 +10,7 @@ import { withAuthenticationRequired } from '@auth0/auth0-react';
 import React from 'react';
 import { Home } from './pages/Home';
 import { Pedidos } from './pages/Pedidos';
-import { Clientes } from './pages/Clientes';
+import Clientes from './pages/Clientes.js';
 import { Produtos } from './pages/Produtos';
 import { Financeiro } from './pages/Financeiro';
 import { FormaPagamento } from './pages/FormaPagamento';
